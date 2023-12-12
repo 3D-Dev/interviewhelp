@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #7f8c8d;
+  font-family: roboto;
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 30px;
+}
+.loaderCenter {
+  display: "flex";
+  justify-content: "center";
+  margin-top: "50px";
+}
+
+@media only screen and (min-width: 1024px) {
+  .App {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .App {
+    grid-template-columns: auto auto auto;
+  }
+}
