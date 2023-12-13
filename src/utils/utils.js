@@ -52,3 +52,46 @@ export function processConversionsPerDay(logsData) {
     conversions: count,
   }));
 }
+
+//sorted users
+
+export function sortUsers(users, userLogsStats, sortOption, sortOrder) {
+  return users.sort((a, b) => {
+    let comparison = 0;
+
+    const statsA = userLogsStats[a.fields.Id] || {
+      impressions: 0,
+      conversions: 0,
+      revenue: 0,
+    };
+    const statsB = userLogsStats[b.fields.Id] || {
+      impressions: 0,
+      conversions: 0,
+      revenue: 0,
+    };
+
+    switch (sortOption) {
+      case "name":
+        comparison = a.fields.Name.localeCompare(b.fields.Name);
+        break;
+      case "impressions":
+        comparison = statsA.impressions - statsB.impressions;
+        break;
+      case "conversions":
+        comparison = statsA.conversions - statsB.conversions;
+        break;
+      case "revenue":
+        comparison = statsA.revenue - statsB.revenue;
+        break;
+      default:
+        // Handle default case
+        break;
+    }
+
+    if (sortOrder === "descending") {
+      comparison *= -1;
+    }
+
+    return comparison;
+  });
+}
